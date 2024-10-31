@@ -2,7 +2,7 @@
 version: '3.8'
 
 services:
-  api-gateway:
+  apigateway:
     build:
       context: ./APIGateway
       dockerfile: Dockerfile
@@ -12,17 +12,13 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - microservices-network
-    depends_on:
-      - auth-service
-      - order-service
-      - product-service
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 3
 
-  auth-service:
+  authservice:
     build:
       context: ./AuthService
       dockerfile: Dockerfile
@@ -34,13 +30,11 @@ services:
       - microservices-network
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 3
 
-
-
-  order-service:
+  orderservice:
     build:
       context: ./OrderService
       dockerfile: Dockerfile
@@ -50,17 +44,13 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - microservices-network
-    depends_on:
-      - auth-service
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 3
 
-
-
-  product-service:
+  productservice:
     build:
       context: ./ProductService
       dockerfile: Dockerfile
@@ -72,11 +62,9 @@ services:
       - microservices-network
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8083/actuator/health" ]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 3
-
-
 
 networks:
   microservices-network:
