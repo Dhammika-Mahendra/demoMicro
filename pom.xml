@@ -20,6 +20,7 @@
     <module>APIgateway</module>
     <module>OrderService</module>
     <module>AuthService</module>
+      <module>DiscoveryServer</module>
   </modules>
 
   <properties>
