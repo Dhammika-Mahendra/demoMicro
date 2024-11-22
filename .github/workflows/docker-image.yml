@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
+          distribution: 'temurin'  # You can also use 'adoptopenjdk' or 'zulu'
 
       # Step 3: Build the JAR using Maven (or Gradle if you're using that)
       - name: Build the JAR
