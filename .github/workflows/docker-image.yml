@@ -30,9 +30,12 @@ jobs:
           registry="dhammikamahendra"
 
           for service in "${services[@]}"; do
+            # Convert service name to lowercase
+            lowercase_service=$(echo "$service" | tr '[:upper:]' '[:lower:]')
+      
             # Build the image
-            docker build -t $registry/$service:latest -f $service/Dockerfile $service
+            docker build -t $registry/$lowercase_service:latest -f $service/Dockerfile $service
 
             # Push the image to Docker Hub
-            docker push $registry/$service:latest
+            docker push $registry/$lowercase_service:latest
           done
