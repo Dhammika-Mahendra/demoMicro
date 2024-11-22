@@ -11,6 +11,6 @@ public class AuthController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public String placeOrder(@RequestBody String data) {
-        return data+" auth success";
+        return data+" auth is success";
     }
 }
